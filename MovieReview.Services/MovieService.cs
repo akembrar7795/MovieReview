@@ -12,6 +12,8 @@ namespace MovieReview.Services
     {
         private readonly Guid _userId;
 
+        public MovieService() { }
+
         public MovieService(Guid userid)
         {
             _userId = userid;
@@ -36,11 +38,11 @@ namespace MovieReview.Services
             }
         }
 
-        public IEnumerable<MovieListItem> GetMovie()
+        public ICollection<MovieListItem> GetMovie()
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query =
+                var movies =
                     ctx
                         .MovieReviews2
                         .Where(e => e.OwnerID == _userId)
@@ -55,7 +57,8 @@ namespace MovieReview.Services
                                     CreatedUtc = e.CreatedUtc
                                 }
                         );
-                 return query.ToArray();
+
+                return movies.ToArray();
             }
         }
 
@@ -67,6 +70,7 @@ namespace MovieReview.Services
                     ctx
                         .MovieReviews2
                         .Single(e => e.MovieID == movieId && e.OwnerID == _userId);
+                var reviewService = new ReviewService(_userId, movieId);
                 return
                     new MovieDetail
                     {
@@ -74,6 +78,7 @@ namespace MovieReview.Services
                         MovieName = entity.MovieName,
                         Genre = entity.Genre,
                         Director = entity.Director,
+                        AllReviews = reviewService.GetAllReviewByMovieId(movieId),
                         CreatedUtc = entity.CreatedUtc,
                         UpdatedUtc = entity.ModifiedUtc
                     };

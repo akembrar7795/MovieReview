@@ -9,19 +9,20 @@ using System.Web.Mvc;
 
 namespace MovieReview.WebMVC.Controllers
 {
-    [Authorize]
+   
     public class MovieController : Controller
     {
         // GET: Movie
         public ActionResult Index()
         {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new MovieService(userId);
+            //var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new MovieService(/*userId*/);
             var model = service.GetMovie();
 
             return View(model);
         }
 
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -120,8 +121,8 @@ namespace MovieReview.WebMVC.Controllers
 
         private MovieService CreateMovieService()
         {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new MovieService(userId);
+            //var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new MovieService(/*userId*/);
             return service;
         }
     }

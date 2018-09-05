@@ -13,9 +13,6 @@ namespace MovieReview.Models
         public int ReviewID { get; set; }
 
         [Required]
-        public Guid OwnerID { get; set; }
-
-        [Required]
         public string Review { get; set; }
 
     }

@@ -15,8 +15,7 @@ namespace MovieReview.Models
         [Required]
         public int MovieID { get; set; }
 
-        [Required]
-        public string ReviewText { get; set; }
+        public string YourReview { get; set; }
 
     }
 }

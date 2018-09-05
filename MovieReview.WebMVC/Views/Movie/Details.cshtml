@@ -4,90 +4,137 @@
 @{
     ViewBag.Title = "Details";
 }
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
 
-<h2>Details</h2>
+<style>
 
-<div>
-    <h4>MovieDetail</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.MovieID)
-        </dt>
+    .movie-details {
+        height: 100%;
+        width: 100%;
+        background-image: linear-gradient(to right top, #092648, #424e72, #757b9f, #ababce, #e2deff);
+        border-radius: 10px;
+        margin-top: 100px;
+        padding-left: 20px;
+        padding-top: 10px;
+        color: white;
+        
+    }
 
-        <dd>
-            @Html.DisplayFor(model => model.MovieID)
-        </dd>
+    a {
+        color: white;
+        text-decoration: none;
+        /*font-family: 'Indie Flower', cursive;*/
+    }
+    a:hover{
+        color: white;
+        
+    }
+    .heading {
+        font-family: 'Abril Fatface', cursive;
+    }
+    
+</style>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MovieName)
-        </dt>
+<div class="movie-details">
 
-        <dd>
-            @Html.DisplayFor(model => model.MovieName)
-        </dd>
+    <h2 class="text-center heading">Details</h2>
+    <div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Genre)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Genre)
-        </dd>
+        @*<h4 class="text-center">MovieDetail</h4>*@
+        <br />
+        <dl class="dl-horizontal">
+            @*<dt>
+                    @Html.DisplayNameFor(model => model.MovieID)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Director)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.MovieID)
+                </dd>*@
 
-        <dd>
-            @Html.DisplayFor(model => model.Director)
-        </dd>
+            <dt>
+                <h4 class="heading">@Html.DisplayNameFor(model => model.MovieName):</h4>
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedUtc)
-        </dt>
+            <dd>
+                <h4>@Html.DisplayFor(model => model.MovieName)</h4>
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CreatedUtc)
-        </dd>
+            <dt>
+                <h4 class="heading">@Html.DisplayNameFor(model => model.Genre):</h4>
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdatedUtc)
-        </dt>
+            <dd>
+                <h4>@Html.DisplayFor(model => model.Genre)</h4>
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.UpdatedUtc)
-        </dd>
+            <dt>
+                <h4 class="heading">@Html.DisplayNameFor(model => model.Director):</h4>
+            </dt>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MovieID }) |
-    @Html.ActionLink("Back to List", "Index") |
-    @Html.ActionLink("Write a review", "Create", "Review", new { id = Model.MovieID }, null)
+            <dd>
+                <h4>@Html.DisplayFor(model => model.Director)</h4>
+            </dd>
 
-</p>
+            <dt>
+                <h4 class="heading">@Html.DisplayNameFor(model => model.CreatedUtc):</h4>
+            </dt>
 
-<div class="row">
-    <div class="container">
-        @foreach (var item in Model.AllReviews)
-        {
-            <div class="row review">
-                <div class="col-md-12">
-                    <h2>
-                        @Html.DisplayFor(modelItem => item.UserName)
-                    </h2>
-                    <p>
-                        @Html.DisplayFor(modelItem => item.Review)
-                    </p>
-                    @if (User.Identity.GetUserId() == item.OwnerID.ToString())
-                    {
-                        @Html.ActionLink("Edit", "Edit", "Comment", new { id = item.ReviewID }, null)
-                        @Html.ActionLink("Delete", "Delete", "Comment", new { id = item.ReviewID }, null)
-                    }
-                </div>
-            </div>
-        }
+            <dd>
+                <h4>@Html.DisplayFor(model => model.CreatedUtc)</h4>
+            </dd>
+
+            <dt>
+                <h4 class="heading">@Html.DisplayNameFor(model => model.UpdatedUtc):</h4>
+            </dt>
+
+            <dd>
+                <h4>@Html.DisplayFor(model => model.UpdatedUtc)</h4>
+            </dd>
+
+        </dl>
     </div>
+    <p class="links">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.MovieID }) |
+        @Html.ActionLink("Back to List", "Index")
+        @*@Html.ActionLink("Write a review", "Create", "Review", new { id = Model.MovieID }, null)*@
+
+    </p>
+    <hr />
+    <h1 class="heading">Reviews</h1>
+
+    <div class="row">
+        <div class="container">
+            @foreach (var item in Model.AllReviews)
+            {
+                <div class="row review">
+                    <div class="col-md-12">
+                        <h4 class="heading">
+                            @Html.DisplayNameFor(modelItem => item.UserName):
+                        </h4>
+                        <h4>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </h4>
+                        <h4 class="heading">
+                            @Html.DisplayNameFor(modelItem => item.Review):
+                        </h4>
+                        <h4>
+                            @Html.DisplayFor(modelItem => item.Review)
+                        </h4>
+
+                        @if (User.Identity.GetUserId() == item.OwnerID.ToString())
+                        {
+                            //text, Action, controller.
+                            @Html.ActionLink("Edit", "Edit", "Review", new { id = item.ReviewID }, null)
+                            @Html.ActionLink("Delete", "Delete", "Review", new { id = item.ReviewID }, null)
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
 </div>
+
 

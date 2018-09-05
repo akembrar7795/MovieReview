@@ -35,7 +35,7 @@ namespace MovieReview.Services
                 {
                     OwnerID = _userId,
                     MovieID = _movieID,
-                    Reviews = model.ReviewText,
+                    Reviews = model.YourReview,
                     CreatedUtc = DateTimeOffset.Now,
                     UserName = "TemporaryPlaceholderName"
                 };
@@ -125,12 +125,32 @@ namespace MovieReview.Services
 
         public bool UpdateReview(ReviewEdit model)
         {
-            throw new NotImplementedException();
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .MovieReviews
+                        .Single(e => e.ReviewID == model.ReviewID && e.OwnerID == _userId);
+
+                entity.Reviews = model.Review;
+                
+                return ctx.SaveChanges() == 1;
+            }
         }
 
         public bool DeleteReview(int reviewId)
         {
-            throw new NotImplementedException();
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .MovieReviews
+                        .Single(e => e.ReviewID == reviewId && e.OwnerID == _userId);
+
+                ctx.MovieReviews.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
         }
 
         public int GetReviewCountByMovieId(int MovieId)
