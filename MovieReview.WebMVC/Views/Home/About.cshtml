@@ -1,7 +1,25 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
 
-<p>Use this area to provide additional information.</p>
+<style>
+    .main-div {
+        background-image: linear-gradient(to right top, #092648, #424e72, #757b9f, #ababce, #e2deff);
+        margin-top: 70px;
+        padding: 20px;
+        color: white;
+        font-size: 20px;
+    }
+
+    .heading {
+        font-family: 'Abril Fatface', cursive;
+    }
+</style>
+<div class="main-div text-center">
+    <h2 class="heading">@ViewBag.Title.</h2>
+    <h3 class="heading">@ViewBag.Message</h3>
+
+    <p>Use this area to provide additional information.</p>
+</div>
+

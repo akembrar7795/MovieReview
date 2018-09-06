@@ -12,13 +12,23 @@
     }
 
     .main-div {
-        height: 400px;
-        width: 100%;
-        background-color: white;
-        opacity: 0.7;
+        background-image: linear-gradient(to right top, #092648, #424e72, #757b9f, #ababce, #e2deff);
+        opacity: 0.9;
         border-radius: 10px;
         margin-top: 100px;
     }
+    .main-div h1{
+        color: white;
+    }
+    .login-link a {
+        color: white;
+        font-size: 50px;
+    }
+    .or {
+        color: white;
+        font-size: 25px;
+    }
+    
 </style>
 
 <body>
@@ -27,6 +37,21 @@
         <h1 class="text-center">
             WELCOME
         </h1>
+        <div class="text-center login-link">
+            <span>@Html.ActionLink("Login", "Login", "Account")</span>
+        </div>
+        <div class="text-center or">
+            OR
+        </div>
+        <div class="text-center login-link">
+            @Html.ActionLink("Create a new Account", "Register", "Account")
+        </div>
+       
+        <br />
+        <br />
+        <div class="text-center">
+            <img src="https://www.dish.com/programming/on-demand/images/shows.png" alt="Alternate Text" width="400px" height="400px" />
+        </div>
 
     </div>
 </body>

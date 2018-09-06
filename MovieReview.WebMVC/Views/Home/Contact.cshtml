@@ -1,29 +1,44 @@
 ﻿@{
     ViewBag.Title = "Contact";
 }
+<link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+
 <style>
     .main-div {
         background-image: linear-gradient(to right top, #092648, #424e72, #757b9f, #ababce, #e2deff);
         color: white;
         margin-top: 100px;
+        padding: 20px;
+        font-size: 20px;
+    }
+
+    a {
+        color: white;
+    }
+
+        a:hover {
+            color: white;
+        }
+    .heading {
+        font-family: 'Abril Fatface', cursive;
     }
 </style>
 
-<div class="main-div col-md-offset-3 col-md-6">
+<div class="main-div text-center">
 
-    <h2>@ViewBag.Title.</h2>
+    <h2 class="heading">@ViewBag.Title.</h2>
     @*<h3>@ViewBag.Message</h3>*@
     <br />
 
-    <address>
+    <address class="heading">
         Eleven Fifty Academy<br />
-        Redmond, WA 98052-6399<br />
+        12175 Visionary Way, Fishers, IN 46038<br />
         <abbr title="Phone"></abbr>
-        (916)370-6940
+        (855) 925-1150
     </address>
 
     <address>
-        <strong>Support:</strong>   <a href="mailto:akembrar7795@gmail.com">akembrar7795@gmail.com</a><br />
-        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+        <strong class="heading">Support:</strong>   <a href="mailto:akembrar7795@gmail.com">akembrar7795@gmail.com</a><br />
+        <strong class="heading">Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
     </address>
 </div>

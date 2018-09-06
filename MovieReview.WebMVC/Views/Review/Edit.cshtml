@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Edit";
 }
+<link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+
 
 <style>
     .review-edit {
@@ -14,49 +16,54 @@
         padding-left: 20px;
         padding-top: 10px;
         padding-bottom: 10px;
-    }
-    .review-edit a{
-        color: black;
+        background-image: linear-gradient(to right top, #092648, #424e72, #757b9f, #ababce, #e2deff);
+        color: white;
+        font-size: 20px;
     }
 
+        .review-edit a {
+            color: white;
+            font-family: 'Abril Fatface', cursive;
+        }
+
+    .heading {
+        font-family: 'Abril Fatface', cursive;
+    }
 </style>
 
 <div class="review-edit">
-    <h2>Edit</h2>
+    <h2 class="heading text-center">Edit</h2>
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>ReviewEdit</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ReviewID)
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ReviewID)
 
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.OwnerID, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.OwnerID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.OwnerID, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.OwnerID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.OwnerID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OwnerID, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="heading"> @Html.LabelFor(model => model.Review, htmlAttributes: new { @class = "control-label col-md-2" })</div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Review, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Review, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Review, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Review, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Review, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
             </div>
         </div>
-    </div>
     }
 
     <div>
