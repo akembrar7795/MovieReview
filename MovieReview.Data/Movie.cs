@@ -29,6 +29,6 @@ namespace MovieReview.Data
 
         public DateTimeOffset? ModifiedUtc { get; set; }
 
-        
+
     }
 }
