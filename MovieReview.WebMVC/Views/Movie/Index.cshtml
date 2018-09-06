@@ -3,65 +3,176 @@
 @{
     ViewBag.Title = "Index";
 }
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-@if (TempData.ContainsKey("SaveResult"))
-{
-    <div class="alert alert-success fade in" role="alert">
-    @ViewBag.SaveResult
-    <button type="button" class="close" data-dismiss="alert">
-        <span>&times;</span>
-    </button>
+<style>
+    .movie-index {
+        width: 100%;
+        /*background-color: #072446;*/
+        opacity: 0.99;
+        color: white;
+        border-radius: 5px;
+        margin-top: 100px;
+        padding-left: 20px;
+        padding-top: 10px;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 20px;
+    }
+
+    .links a {
+        text-decoration: none;
+        color: white;
+    }
+
+    h3 a {
+        text-decoration: none;
+        color: white;
+        /*font-family: 'Indie Flower', cursive;*/
+        font-size: 35px;
+    }
+
+    /*.create-btn {
+        background-color: #wh;
+        border: none;
+    }*/
+
+    .card-image {
+        width: 100%;
+        height: 400px;
+        background-image: linear-gradient(to right top, #092648, #424e72, #757b9f, #ababce, #e2deff);
+        border-radius: 3px;
+    }
+
+    .card-body {
+        /*background-color: #072446;*/
+        width: 100%;
+        height: 100%;
+        color: white;
+        /*font-family: 'Indie Flower', cursive;*/
+        
+    }
+
+    .heading {
+        color: white;
+        font-size: 100px;
+        font-family: 'Abril Fatface', cursive;
+    }
+    .card-image:hover{
+        transform: scale(1.1);
+    }
+    .card-body a {
+        color: white;
+        /*font-family: 'Indie Flower', cursive;*/
+    }
+    
+    
+    
+</style>
+
+<div class="movie-index">
+    <div class="movie-index-2">
+
+        <h1 class="text-center heading">Movies</h1>
+
+        @if (TempData.ContainsKey("SaveResult"))
+        {
+            <div class="alert alert-success fade in" role="alert">
+                @ViewBag.SaveResult
+                <button type="button" class="close" data-dismiss="alert">
+                    <span>&times;</span>
+                </button>
+            </div>
+        }
+        <p>
+            <h3 class="text-center ">@Html.ActionLink("Create New", "Create")</h3>
+        </p>
+
+        <div class="col-md-12">
+            @foreach (var item in Model)
+            {
+                <div class="col-sm-3 col-sm-offset-1 card text-center">
+                    <br />
+                    <div class="card-image">
+                       
+                        <h3 class="col-md-offset-3 col-md-6 review">@Html.ActionLink("Review", "Create", "Review", new { id = item.MovieID }, null)</h3>
+                    </div>
+                    <div class="card-body ">
+                        <div class="card-title ">
+                            <h1 class="heading2">@Html.DisplayFor(modelItem => item.MovieName)</h1>
+                        </div>
+                        <div class="card-genre">
+                            <h3>@Html.DisplayFor(modelItem => item.Genre)</h3>
+                        </div>
+                        <div class="card-director">
+                            @Html.DisplayFor(modelItem => item.Director)
+                        </div>
+                        <div class="card-date">
+                            @Html.DisplayFor(modelItem => item.CreatedUtc)
+                        </div>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.MovieID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.MovieID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.MovieID }) 
+                    </div>
+                </div>
+            }
+
+        </div>
+        <!-- <table class="table ">
+            <tr>
+                @*<th>
+                    @Html.DisplayNameFor(model => model.MovieID)
+                </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.MovieName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Genre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Director)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedUtc)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.MovieID)
+                    </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MovieName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Genre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Director)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedUtc)
+                    </td>
+                    <td class="links">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.MovieID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.MovieID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.MovieID })
+                    </td>
+                </tr>
+            }
+
+        </table>
+              -->
+
+
+
+
     </div>
-}
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.MovieID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MovieName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Genre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Director)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedUtc)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MovieID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MovieName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Genre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Director)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedUtc)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MovieID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MovieID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MovieID })
-        </td>
-    </tr>
-}
+</div>
 
-</table>

@@ -65,6 +65,9 @@ namespace MovieReview.WebMVC.Models
     public class RegisterViewModel
     {
         [Required]
+        public string FullName { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

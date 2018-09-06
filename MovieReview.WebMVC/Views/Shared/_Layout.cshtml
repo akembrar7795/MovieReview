@@ -7,23 +7,45 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+    <style>
+        body {
+            /*background-image: url(http://www.patrickbetdavid.com/wp-content/uploads/2016/10/movies-red.jpg);*/
+            background-image: url(http://baltimoresportsandlife.com/wp-content/uploads/2016/07/Movies.jpg);
+            /*background-image: linear-gradient(to right top, #3d2872, #a81b6c, #e6493c, #e39c00, #96eb12);*/
+            /*background-image: url(https://images.pexels.com/photos/1040473/pexels-photo-1040473.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);*/
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        .footer{
+            background-color: black;
+            color: white;
+        }
+        .my-nav {
+            background-color: #072446;
+            border: none;
+        }
+     </style>
+
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+    <div class="navbar navbar-inverse navbar-fixed-top nav-main my-nav">
+        <div class="container ">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @*@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
-            <div class="navbar-collapse collapse">
+            <div class="navbar-collapse collapse nav-links ">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Movies", "Index","Movie")</li>
-                                                             
+                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                    <li>@Html.ActionLink("Movies", "Index", "Movie")</li>
+                    }
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
@@ -31,11 +53,15 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="container body-content ">
         @RenderBody()
-        <hr />
+        <br />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            @*<div class="footer">
+                <p>
+                    CopyRight Eleven fifty Academy 2018
+                </p>
+            </div>*@
         </footer>
     </div>
 
